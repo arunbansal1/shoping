@@ -2,7 +2,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { Context } from './ContextApi';
 import { FaStar } from "react-icons/fa";
-import { Row, Col, Card, CardTitle, CardText, CardImg, Button, Container, UncontrolledCarousel } from 'reactstrap';
+import { Row, Col, Container, UncontrolledCarousel } from 'reactstrap';
 
 export default function ProductDetails() {
     let params = useParams()
@@ -14,7 +14,7 @@ export default function ProductDetails() {
             .then(function (res) {
                 setSingleProduct(res)
             });
-    }, [])
+    },[params.productId])
     if (isLogin === false) {
         return <Navigate to={"/login"} />
     }

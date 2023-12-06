@@ -1,4 +1,4 @@
-import { Form, Button, FormGroup, Label, Input,Container } from 'reactstrap';
+import { Form, Button, FormGroup, Label, Input } from 'reactstrap';
 import { useState,useContext } from 'react';
 import {Context} from './ContextApi';
 
@@ -16,7 +16,7 @@ function Login() {
     }
     function onClickHandler() {
         setError(null);
-        if (userDetails.username != "" && userDetails.password != "") {
+        if (userDetails.username !== "" && userDetails.password !== "") {
             fetch('https://dummyjson.com/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

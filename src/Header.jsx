@@ -5,11 +5,6 @@ import {
   NavLink,
   Nav,
   NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
   Input
 } from 'reactstrap';
 import { Context, } from './ContextApi';

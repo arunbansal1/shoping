@@ -1,10 +1,7 @@
 import { 
-Button,
 Container,
 Card,
-CardHeader,
 CardBody,
-CardText,
 CardTitle
 }from 'reactstrap';
 import { Context } from './ContextApi';
@@ -13,7 +10,6 @@ import {useState,useEffect, useContext} from 'react';
 export default function ProductList(){
 const [products,setProducts] = useState([]);
 const {isLogin,serachResult} = useContext(Context);
-// console.log(serachResult)
 useEffect(()=>{
     if(isLogin){
         fetch('https://dummyjson.com/products')
@@ -22,12 +18,12 @@ useEffect(()=>{
           setProducts(res.products)    
         });
     }    
-},[]);
+},[isLogin]);
 if(isLogin === false){
   return  <Navigate to={"/login"} />
 }
 const productFilter = products.filter((single)=>{
-  if(serachResult.length === 0 || single.title.toLowerCase().indexOf(serachResult)!=-1){
+  if(serachResult.length === 0 || single.title.toLowerCase().indexOf(serachResult)!==-1){
     return true
   }
   return false
@@ -44,7 +40,7 @@ const productList = productFilter.map((product)=>{
       outline    
     >
       <div className='position-relative'>
-      <img src={product.thumbnail}  className='card-img-top img-fluid'/>
+      <img src={product.thumbnail}  className='card-img-top img-fluid' alt='not shown'/>
           <span className='h6 bg-danger p-2 rounded position-absolute end-0 bottom-0 me-2 text-white'>{product.discountPercentage}%</span>  
       </div>
       <CardBody>
