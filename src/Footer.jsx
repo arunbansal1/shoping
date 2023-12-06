@@ -6,10 +6,10 @@ export default function Footer(){
           <h4>Quick Links</h4>
           <ul>
             <li>
-              Work
+              Top Categories
             </li>
             <li>
-              Services
+              Sale
             </li>
           </ul>
         </div>
@@ -17,10 +17,10 @@ export default function Footer(){
           <h4>Programs</h4>
           <ul>
             <li>
-              Air freight
+              New Arrivals
             </li>
             <li>
-              Ocean freight
+              Top Sellers
             </li>
           </ul>
         </div>
@@ -31,7 +31,7 @@ export default function Footer(){
               FAQ
             </li>
             <li>
-              Submit Ticket
+              Return Policy
             </li>
           </ul>
         </div>

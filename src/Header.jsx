@@ -9,10 +9,13 @@ import {
 } from 'reactstrap';
 import { Context, } from './ContextApi';
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 export default function Header() {
   const { isLogin, logout,setSearchResult } = useContext(Context)
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname);
   const toggle = () => setIsOpen(!isOpen);
   function logoutHandler() {
     logout();
@@ -20,6 +23,13 @@ export default function Header() {
   function searchHandler(e){
      let inputElem = e.target;
      setSearchResult(inputElem.value)
+
+  }
+  function searchBtnHandler(){
+    
+     if(location.pathname !== "/products"){
+      navigate("/products");
+     }
   }
   return (
     <div>
@@ -39,6 +49,9 @@ export default function Header() {
                 </NavItem>
                 <NavItem>
                   <Input placeholder='Search products' onChange={searchHandler} />
+                </NavItem>
+                <NavItem>
+                  &nbsp; <button className='btn btn-primary' type='button' onClick={searchBtnHandler}>Search</button>
                 </NavItem>
               </> : <NavItem>
                 <Link className='nav-link' to="/login">

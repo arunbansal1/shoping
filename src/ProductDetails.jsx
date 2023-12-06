@@ -3,16 +3,20 @@ import { useState, useEffect, useContext } from 'react';
 import { Context } from './ContextApi';
 import { FaStar } from "react-icons/fa";
 import { Row, Col, Container, UncontrolledCarousel } from 'reactstrap';
-
+import { getDiscountedPrice } from './helpers';
+import ProductRating from './ProductRating';
 export default function ProductDetails() {
     let params = useParams()
     const { isLogin } = useContext(Context)
+    const [isLoading, setIsLoading] = useState(false);
     const [singleProduct, setSingleProduct] = useState({});
     useEffect(() => {
+        setIsLoading(true);
         fetch('https://dummyjson.com/products/' + params.productId)
             .then(res => res.json())
             .then(function (res) {
-                setSingleProduct(res)
+                setSingleProduct(res);
+                setIsLoading(false);
             });
     },[params.productId])
     if (isLogin === false) {
@@ -27,8 +31,13 @@ export default function ProductDetails() {
             }
         })
     }
-    var totalValue = singleProduct.price *(singleProduct.discountPercentage/100);
-    var total = singleProduct.price-totalValue;
+    if(isLoading){
+        return <div className="d-flex justify-content-center p-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    }
     return <div>
         <Container>
             <Row className=' m-4 rounded'>
@@ -48,13 +57,16 @@ export default function ProductDetails() {
                 <Col md={8} lg={8} sm={12}>
                     <h2>{singleProduct.title}</h2>
                     <h5>{singleProduct.category}</h5>
-                    <div className='h6'><s className='text-warning'>Price :{singleProduct.price}</s><br/>
-                    Offer Price{total}
+                    <div className='h6'><s className='text-warning'>Price : ₹{singleProduct.price}</s><br/>
+                    Offer Price : ₹{getDiscountedPrice(singleProduct.price, singleProduct.discountPercentage)}
                     </div>
                     <div>{singleProduct.description}</div>
                     <div>
                         <span className='h6'>{singleProduct.rating}</span>
-                        <span className='text-warning rating fs-6'><FaStar /></span>
+                        <span className='text-warning rating fs-6'>
+                        <ProductRating rating={singleProduct.rating} />    
+                        </span>
+                        
                     </div>
                 </Col>
             </Row>
