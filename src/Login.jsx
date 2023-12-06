@@ -26,18 +26,13 @@ function Login() {
                 body: JSON.stringify(userDetails)
             })
                 .then(function (result) {
-                    // console.log('result',result)
                     return result.json();
                 }).then(function (res) {
                     setIsLoading(false);
-                    // console.log("res", res)
                     if (res.message) {
-                        // console.log('not Login')
                         setError(res.message)
                     }
                     else {
-                        // console.log('login')
-                        // setLoginValue(res)
                         loginpage()
 
                     }
@@ -46,10 +41,9 @@ function Login() {
             setError("Please provide username and password")
         }
     }
-    // console.log(loginValue)
     return <div className='d-flex justify-content-center align-items-center bg-success page-height '>
         <Form formcontrol='true' className='login-page mb-5' onSubmit={onClickHandler} >
-            <img src='logo.png' className='img-fluid' width={"100%"} />
+            <img src='logo.png' className='img-fluid' width={"100%"} alt='logo'/>
             {error && <div className='h6 text-white'>{error}</div>}
             <FormGroup>
                 <Label

@@ -1,7 +1,6 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { Context } from './ContextApi';
-import { FaStar } from "react-icons/fa";
 import { Row, Col, Container, UncontrolledCarousel } from 'reactstrap';
 import { getDiscountedPrice } from './helpers';
 import ProductRating from './ProductRating';
@@ -22,7 +21,6 @@ export default function ProductDetails() {
     if (isLogin === false) {
         return <Navigate to={"/login"} />
     }
-    // console.log(singleProduct)
     let sliderImages = [];
     if(singleProduct.images){
         sliderImages = singleProduct.images.map((single)=>{

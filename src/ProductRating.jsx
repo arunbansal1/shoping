@@ -1,4 +1,4 @@
-import { FaStar, FaStarHalfAlt, FaRegStar  } from "react-icons/fa";
+import { FaStar, FaRegStar  } from "react-icons/fa";
 
 function ProductRating(pramas){
     const rating = pramas.rating;

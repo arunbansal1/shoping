@@ -6,7 +6,7 @@ export default function Welcome(){
   const {isLogin} = useContext(Context)
     return <Container fluid className='text-white page-height bg-success d-flex justify-content-center align-items-center '>
             <div className='welcome-page'>
-              <img src='/logo.png' className='img-fluid' />
+              <img src='/logo.png' className='img-fluid' alt='logo'/>
                <h1>
                  Welcome Back To the Store
                </h1>
